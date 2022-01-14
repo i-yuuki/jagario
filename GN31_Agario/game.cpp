@@ -6,6 +6,10 @@
 void Game::init(){
   scene = std::make_unique<GameScene>();
   scene->init();
+  // Renderer2D氏頂点シェーダー自動でついてくるけど
+  // 頂点シェーダーつけてなかったから手動で
+  vertexShader = Near::Assets::vertexShaders()->getOrLoad("assets/nearlib/shaders/vs.hlsl");
+  Near::renderer()->setVertexShader(vertexShader.get());
 }
 
 void Game::update(){
@@ -24,6 +28,7 @@ void Game::draw(){
 }
 
 void Game::uninit(){
+  vertexShader.reset();
   scene->uninit();
   scene.reset();
 }
