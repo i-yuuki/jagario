@@ -9,6 +9,15 @@ void Player::init(Near::Layer* layer){
 
 void Player::update(float deltaTime){
   super::update(deltaTime);
+  if(controllable){
+    int mouseX = Near::input()->getMouseX();
+    int mouseY = Near::input()->getMouseY();
+    int dirX = mouseX - Near::renderer()->getWidth() / 2;
+    int dirY = mouseY - Near::renderer()->getHeight() / 2;
+    float direction = std::atan2(static_cast<float>(dirX), static_cast<float>(dirY));
+    directionChanged = direction != this->direction;
+    this->direction = direction;
+  }
 }
 
 void Player::draw(){
@@ -26,4 +35,16 @@ void Player::uninit(){
 
 void Player::setName(const char* name){
   strcpy_s(this->name, sizeof(this->name), name);
+}
+
+void Player::setControllable(bool controllable){
+  this->controllable = controllable;
+}
+
+float Player::getDirection(){
+  return direction;
+}
+
+bool Player::hasDirectionChanged(){
+  return directionChanged;
 }

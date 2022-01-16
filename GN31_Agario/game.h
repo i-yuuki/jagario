@@ -20,5 +20,7 @@ private:
   GameConnection connection;
   unsigned int playerId;
   std::unordered_map<unsigned int, std::shared_ptr<Player>> players;
+  std::shared_ptr<Player> getMe();
+  std::shared_ptr<Player> getPlayer(unsigned int playerId);
   void disconnect();
 };

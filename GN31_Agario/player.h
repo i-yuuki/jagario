@@ -12,8 +12,14 @@ public:
   void draw() override;
   void uninit() override;
   void setName(const char* name);
+  void setControllable(bool controllable);
+  float getDirection();
+  bool hasDirectionChanged();
 private:
   char name[MAX_NAME_LENGTH];
+  bool controllable;
+  float direction;
+  bool directionChanged;
   std::shared_ptr<Near::Texture> texture;
   std::shared_ptr<Near::Font::Font> font;
 };

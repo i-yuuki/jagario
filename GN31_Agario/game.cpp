@@ -29,6 +29,9 @@ void Game::update(){
       {
         auto& packet = connection.getPacket<PacketServerJoin>();
         playerId = packet.playerId;
+        if(auto me = getMe()){
+          me->setControllable(true);
+        }
         break;
       }
       case PacketType::S_ADD_PLAYER:
@@ -50,6 +53,23 @@ void Game::update(){
         }
         break;
       }
+      case PacketType::S_UPDATE_PLAYER:
+      {
+        auto& packet = connection.getPacket<PacketServerUpdatePlayer>();
+        if(auto player = getPlayer(packet.playerId)){
+          player->transform.position.x = packet.posX;
+          player->transform.position.y = packet.posY;
+        }
+        break;
+      }
+    }
+  }
+  if(auto me = getMe()){
+    if(me->hasDirectionChanged()){
+      PacketClientDirection packet;
+      packet.playerId = playerId;
+      packet.direction = me->getDirection();
+      connection.sendPacket(packet);
     }
   }
 }
@@ -68,6 +88,15 @@ void Game::uninit(){
   scene.reset();
   disconnect();
   connection.uninit();
+}
+
+std::shared_ptr<Player> Game::getMe(){
+  return getPlayer(playerId);
+}
+
+std::shared_ptr<Player> Game::getPlayer(unsigned int playerId){
+  auto it = players.find(playerId);
+  return it == players.end() ? nullptr : it->second;
 }
 
 void Game::disconnect(){
