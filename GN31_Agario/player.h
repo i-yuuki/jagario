@@ -12,11 +12,13 @@ public:
   void draw() override;
   void uninit() override;
   void setName(const char* name);
+  void setSize(int size);
   void setControllable(bool controllable);
   float getDirection();
   bool hasDirectionChanged();
 private:
   char name[MAX_NAME_LENGTH];
+  int size;
   bool controllable;
   float direction;
   bool directionChanged;

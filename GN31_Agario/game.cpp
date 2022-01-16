@@ -41,6 +41,7 @@ void Game::update(){
         players.insert({packet.playerId, playerObj});
         playerObj->transform.position = Near::Math::Vector3(packet.posX, packet.posY, 0);
         playerObj->setName(packet.name);
+        playerObj->setSize(packet.size);
         break;
       }
       case PacketType::S_REMOVE_PLAYER:
@@ -59,6 +60,7 @@ void Game::update(){
         if(auto player = getPlayer(packet.playerId)){
           player->transform.position.x = packet.posX;
           player->transform.position.y = packet.posY;
+          player->setSize(packet.size);
         }
         break;
       }
