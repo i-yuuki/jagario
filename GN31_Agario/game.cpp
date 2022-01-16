@@ -12,6 +12,7 @@ void Game::init(){
   // 頂点シェーダーつけてなかったから手動で
   vertexShader = Near::Assets::vertexShaders()->getOrLoad("assets/nearlib/shaders/vs.hlsl");
   Near::renderer()->setVertexShader(vertexShader.get());
+  Near::Assets::fonts()->add("Inter", "assets/fonts/inter.fnt");
 }
 
 void Game::update(){
