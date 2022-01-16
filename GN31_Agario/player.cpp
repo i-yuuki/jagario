@@ -20,3 +20,7 @@ void Player::uninit(){
   texture.reset();
   super::uninit();
 }
+
+void Player::setName(const char* name){
+  strcpy_s(this->name, sizeof(this->name), name);
+}

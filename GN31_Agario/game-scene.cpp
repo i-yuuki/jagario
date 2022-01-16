@@ -6,7 +6,6 @@
 void GameScene::init(){
   Scene::init();
   // Add objects here
-  getLayer(LAYER_OBJECTS)->createGameObject<Player>();
 }
 
 void GameScene::draw(){

@@ -2,6 +2,7 @@
 #include "game.h"
 
 #include "game-scene.h"
+#include "player.h"
 
 void Game::init(){
   connection.init();
@@ -28,6 +29,13 @@ void Game::update(){
       {
         auto& packet = connection.getPacket<PacketServerJoin>();
         playerId = packet.playerId;
+      }
+      case PacketType::S_ADD_PLAYER:
+      {
+        auto& packet = connection.getPacket<PacketServerAddPlayer>();
+        auto playerObj = scene->getLayer(Near::Scene::LAYER_OBJECTS)->createGameObject<Player>();
+        playerObj->transform.position = Near::Math::Vector3(packet.posX, packet.posY, 0);
+        playerObj->setName(packet.name);
       }
     }
   }
