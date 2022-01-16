@@ -22,6 +22,15 @@ void Game::update(){
   if(Near::input()->isKeyPressedThisFrame('C')){
     connection.connect("127.0.0.1", u8"てすと");
   }
+  while(connection.receivePacket()){
+    switch(connection.getPacketType()){
+      case PacketType::S_JOIN:
+      {
+        auto& packet = connection.getPacket<PacketServerJoin>();
+        playerId = packet.playerId;
+      }
+    }
+  }
 }
 
 void Game::draw(){

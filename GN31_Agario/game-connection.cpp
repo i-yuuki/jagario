@@ -45,7 +45,7 @@ bool GameConnection::receivePacket(){
   if(socket == NULL) return false; // throwでもよき
   
   sockaddr_in senderAddr;
-  int senderAddrLen;
+  int senderAddrLen = sizeof(sockaddr);
 
   auto res = recvfrom(socket, packetBuffer, sizeof(packetBuffer), 0, reinterpret_cast<sockaddr*>(&senderAddr), &senderAddrLen);
   if(res == SOCKET_ERROR){
