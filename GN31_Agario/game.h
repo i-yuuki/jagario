@@ -4,6 +4,8 @@
 #include <NearLib/fps-counter.h>
 #include <NearLib/shader.h>
 
+#include "game-connection.h"
+
 class Game{
 public:
   void init();
@@ -14,4 +16,5 @@ private:
   std::unique_ptr<Near::Scene> scene;
   Near::FPSCounter fpsCounter;
   std::shared_ptr<Near::VertexShader> vertexShader;
+  GameConnection connection;
 };

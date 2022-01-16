@@ -4,6 +4,7 @@
 #include "game-scene.h"
 
 void Game::init(){
+  connection.init();
   scene = std::make_unique<GameScene>();
   scene->init();
   // Renderer2D氏頂点シェーダー自動でついてくるけど
@@ -18,6 +19,9 @@ void Game::update(){
   scene->beforeUpdate(deltaTime);
   scene->update(deltaTime);
   scene->afterUpdate(deltaTime);
+  if(Near::input()->isKeyPressedThisFrame('C')){
+    connection.connect("127.0.0.1", L"てすと");
+  }
 }
 
 void Game::draw(){
@@ -31,4 +35,5 @@ void Game::uninit(){
   vertexShader.reset();
   scene->uninit();
   scene.reset();
+  connection.uninit();
 }
