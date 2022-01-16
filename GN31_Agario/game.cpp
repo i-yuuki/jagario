@@ -44,5 +44,15 @@ void Game::uninit(){
   vertexShader.reset();
   scene->uninit();
   scene.reset();
+  disconnect();
   connection.uninit();
+}
+
+void Game::disconnect(){
+  if(connection.isConnected()){
+    PacketClientLeave packet;
+    packet.playerId = playerId;
+    connection.sendPacket(packet);
+  }
+  connection.disconnect();
 }

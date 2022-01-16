@@ -10,6 +10,9 @@ class GameConnection{
 public:
   void init();
   void uninit();
+  // ソケットがあるかを返す
+  // (実装がUDPなのでネーミングが若干🤔)
+  bool isConnected();
   // ソケットを作成
   void connect(const char* address, const char* playerName);
   // ソケットを破棄

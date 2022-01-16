@@ -14,6 +14,10 @@ void GameConnection::uninit(){
   WSACleanup();
 }
 
+bool GameConnection::isConnected(){
+  return socket != NULL;
+}
+
 void GameConnection::connect(const char* address, const char* playerName){
   disconnect();
   
@@ -35,7 +39,6 @@ void GameConnection::connect(const char* address, const char* playerName){
 
 void GameConnection::disconnect(){
   if(socket){
-    // maybe send PacketClientLeave here
     closesocket(socket);
     socket = NULL;
   }

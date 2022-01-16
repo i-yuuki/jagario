@@ -18,4 +18,5 @@ private:
   std::shared_ptr<Near::VertexShader> vertexShader;
   GameConnection connection;
   unsigned int playerId;
+  void disconnect();
 };
