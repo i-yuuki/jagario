@@ -2,7 +2,6 @@
 #include "game.h"
 
 #include "game-scene.h"
-#include "player.h"
 
 void Game::init(){
   connection.init();
@@ -30,13 +29,26 @@ void Game::update(){
       {
         auto& packet = connection.getPacket<PacketServerJoin>();
         playerId = packet.playerId;
+        break;
       }
       case PacketType::S_ADD_PLAYER:
       {
         auto& packet = connection.getPacket<PacketServerAddPlayer>();
         auto playerObj = scene->getLayer(Near::Scene::LAYER_OBJECTS)->createGameObject<Player>();
+        players.insert({packet.playerId, playerObj});
         playerObj->transform.position = Near::Math::Vector3(packet.posX, packet.posY, 0);
         playerObj->setName(packet.name);
+        break;
+      }
+      case PacketType::S_REMOVE_PLAYER:
+      {
+        auto& packet = connection.getPacket<PacketServerRemovePlayer>();
+        auto it = players.find(packet.playerId);
+        if(it != players.end()){
+          it->second->markRemove();
+          players.erase(it);
+        }
+        break;
       }
     }
   }
@@ -51,6 +63,7 @@ void Game::draw(){
 
 void Game::uninit(){
   vertexShader.reset();
+  players.clear();
   scene->uninit();
   scene.reset();
   disconnect();

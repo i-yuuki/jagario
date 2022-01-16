@@ -5,6 +5,7 @@
 #include <NearLib/shader.h>
 
 #include "game-connection.h"
+#include "player.h"
 
 class Game{
 public:
@@ -18,5 +19,6 @@ private:
   std::shared_ptr<Near::VertexShader> vertexShader;
   GameConnection connection;
   unsigned int playerId;
+  std::unordered_map<unsigned int, std::shared_ptr<Player>> players;
   void disconnect();
 };
