@@ -6,6 +6,7 @@
 
 #include "game-connection.h"
 #include "player.h"
+#include "player-camera.h"
 
 class Game{
 public:
@@ -17,6 +18,7 @@ private:
   std::unique_ptr<Near::Scene> scene;
   Near::FPSCounter fpsCounter;
   std::shared_ptr<Near::VertexShader> vertexShader;
+  std::shared_ptr<PlayerCamera> camera;
   GameConnection connection;
   unsigned int playerId;
   std::unordered_map<unsigned int, std::shared_ptr<Player>> players;

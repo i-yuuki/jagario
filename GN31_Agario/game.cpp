@@ -7,6 +7,7 @@ void Game::init(){
   connection.init();
   scene = std::make_unique<GameScene>();
   scene->init();
+  camera = scene->getLayer(Near::Scene::LAYER_MANAGERS)->createGameObject<PlayerCamera>();
   // Renderer2D氏頂点シェーダー自動でついてくるけど
   // 頂点シェーダーつけてなかったから手動で
   vertexShader = Near::Assets::vertexShaders()->getOrLoad("assets/nearlib/shaders/vs.hlsl");
@@ -31,6 +32,7 @@ void Game::update(){
         playerId = packet.playerId;
         if(auto me = getMe()){
           me->setControllable(true);
+          camera->setFollow(me);
         }
         break;
       }
@@ -86,6 +88,7 @@ void Game::draw(){
 void Game::uninit(){
   vertexShader.reset();
   players.clear();
+  camera.reset();
   scene->uninit();
   scene.reset();
   disconnect();
