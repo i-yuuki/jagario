@@ -13,7 +13,7 @@ void Player::update(float deltaTime){
 void Player::draw(){
   auto* r = Near::renderer2D();
   r->setTexture(texture.get());
-  r->fillRect(Near::Math::Vector2(50, 50), Near::Math::Vector2(200, 200));
+  r->fillRect(Near::Math::Vector2(transform.position.x, transform.position.y), Near::Math::Vector2(200, 200));
 }
 
 void Player::uninit(){
