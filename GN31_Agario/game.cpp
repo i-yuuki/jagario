@@ -20,7 +20,7 @@ void Game::update(){
   scene->update(deltaTime);
   scene->afterUpdate(deltaTime);
   if(Near::input()->isKeyPressedThisFrame('C')){
-    connection.connect("127.0.0.1", L"てすと");
+    connection.connect("127.0.0.1", u8"てすと");
   }
 }
 

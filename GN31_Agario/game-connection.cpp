@@ -14,7 +14,7 @@ void GameConnection::uninit(){
   WSACleanup();
 }
 
-void GameConnection::connect(const char* address, const wchar_t* playerName){
+void GameConnection::connect(const char* address, const char* playerName){
   disconnect();
   
   socket = ::socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
@@ -29,7 +29,7 @@ void GameConnection::connect(const char* address, const wchar_t* playerName){
 
   PacketClientJoin packet;
   packet.version = PROTOCOL_VERSION;
-  wcscpy_s(packet.name, MAX_NAME_LENGTH, playerName);
+  strcpy_s(packet.name, sizeof(packet.name), playerName);
   sendPacket(packet);
 }
 

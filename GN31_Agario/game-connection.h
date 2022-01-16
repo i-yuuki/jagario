@@ -11,7 +11,7 @@ public:
   void init();
   void uninit();
   // ソケットを作成
-  void connect(const char* address, const wchar_t* playerName);
+  void connect(const char* address, const char* playerName);
   // ソケットを破棄
   void disconnect();
   // パケットを受信し、できたかを返す
