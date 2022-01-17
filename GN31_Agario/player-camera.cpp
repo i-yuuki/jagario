@@ -8,7 +8,7 @@ void PlayerCamera::update(float deltaTime){
     targetPos = -p->transform.position;
     targetScale = Near::Math::Vector3(1 + std::max((100 - p->getSize()) / 50.0f, 0.0f));
   }
-  float t = std::min(1.0f, deltaTime / 500.0f);
+  float t = std::min(1.0f, deltaTime / 200.0f);
   transform.position = Near::Math::Vector3::Lerp(transform.position, targetPos, t);
   transform.scale = Near::Math::Vector3::Lerp(transform.scale, targetScale, t);
 }
