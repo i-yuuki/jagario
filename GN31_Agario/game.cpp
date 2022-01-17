@@ -2,6 +2,7 @@
 #include "game.h"
 
 #include "game-scene.h"
+#include "scoreboard.h"
 
 Game::Game() : config("config.txt"){
 }
@@ -18,6 +19,8 @@ void Game::init(){
   Near::renderer()->setVertexShader(vertexShader.get());
   Near::Assets::fonts()->add("Inter", "assets/fonts/inter.fnt");
 
+  auto scoreboard = scene->getLayer(Near::Scene::LAYER_OVERLAY)->createGameObject<Scoreboard>(this);
+  scoreboard->transform.position = Near::Math::Vector3(16, 16, 0);
   titleScreen = scene->getLayer(Near::Scene::LAYER_OVERLAY)->createGameObject<TitleScreen>(this);
   titleScreen->show();
 }
@@ -157,4 +160,8 @@ void Game::disconnect(){
     connection.sendPacket(packet);
   }
   connection.disconnect();
+}
+
+const std::unordered_map<unsigned int, std::shared_ptr<Player>>& Game::getPlayers(){
+  return players;
 }

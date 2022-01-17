@@ -11,6 +11,7 @@ public:
   void update(float deltaTime) override;
   void draw() override;
   void uninit() override;
+  const char* getName();
   void setName(const char* name);
   float getSize();
   void setSize(int size);

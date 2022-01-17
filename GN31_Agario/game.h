@@ -20,6 +20,7 @@ public:
   void uninit();
   Config& getConfig();
   void connect();
+  const std::unordered_map<unsigned int, std::shared_ptr<Player>>& getPlayers();
 private:
   Config config;
   std::unique_ptr<Near::Scene> scene;

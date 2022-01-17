@@ -35,6 +35,10 @@ void Player::uninit(){
   super::uninit();
 }
 
+const char* Player::getName(){
+  return name;
+}
+
 void Player::setName(const char* name){
   strcpy_s(this->name, sizeof(this->name), name);
 }
