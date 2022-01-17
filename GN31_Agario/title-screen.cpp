@@ -41,7 +41,7 @@ void TitleScreen::draw(){
   auto* r = Near::renderer2D();
   r->setTransform(Near::Math::Matrix::Identity);
   r->setTexture(nullptr);
-  r->fillRect(Near::Math::Vector2::Zero, screenSize, Near::Math::Vector2::Zero, Near::Math::Color(1, 1, 1, alpha / 2));
+  r->fillRect(Near::Math::Vector2::Zero, screenSize, Near::Math::Vector2::Zero, Near::Math::Color(1, 1, 1, alpha * 0.75f));
   font->drawText(u8"Jagario",       screenCenter + Near::Math::Vector2(  0, -128), Near::Math::Vector2(0.5f),    64, Near::Math::Color(1.000f, 0.341f, 0.133f, alpha));
   if(config.isValid()){
     font->drawText(u8"プレイヤー名:", screenCenter + Near::Math::Vector2( -8,  -24), Near::Math::Vector2(1, 0.5f), 16, gray);
