@@ -29,7 +29,7 @@ void GameConnection::connect(const char* address, const char* playerName){
   serverAddr.sin_port = htons(20250);
 
   unsigned long flag = 1;
-	ioctlsocket(socket, FIONBIO, &flag);
+  ioctlsocket(socket, FIONBIO, &flag);
 
   PacketClientJoin packet;
   packet.version = PROTOCOL_VERSION;

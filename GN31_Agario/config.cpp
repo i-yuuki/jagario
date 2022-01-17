@@ -12,7 +12,7 @@ const char* Config::getFilePath(){
 
 void Config::load(){
   valid = false;
-	FILE* f;
+  FILE* f;
   if(fopen_s(&f, path, "r")) return;
 
   valid = fscanf_s(f, "%s %s", playerName, sizeof(playerName), address, sizeof(address)) == 2;
