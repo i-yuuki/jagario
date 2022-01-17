@@ -33,6 +33,7 @@ void Scoreboard::draw(){
   r->fillRect(Near::Math::Vector2::Zero, Near::Math::Vector2(200, (rows + 1) * rowHeight), Near::Math::Vector2::Zero, Near::Math::Color(0, 0, 0, 0.5f));
   font->drawText(u8"Scoreboard", Near::Math::Vector2(4, 0.5f * rowHeight), Near::Math::Vector2(0, 0.5f), 16, Near::Math::Color(1, 1, 0, 1));
   for(size_t i = 0;i < rows;i ++){
-    font->drawText(std::to_string(i + 1) + u8". " + players[i]->getName(), Near::Math::Vector2(4, (i + 1.5f) * rowHeight), Near::Math::Vector2(0, 0.5f), 16, Near::Math::Color(1, 1, 1, 1));
+    font->drawText(players[i]->getName(), Near::Math::Vector2(4, (i + 1.5f) * rowHeight), Near::Math::Vector2(0, 0.5f), 16, Near::Math::Color(1, 1, 1, 1));
+    font->drawText(std::to_string(players[i]->getSize()), Near::Math::Vector2(196, (i + 1.5f) * rowHeight), Near::Math::Vector2(1, 0.5f), 16, Near::Math::Color(1, 1, 1, 1));
   }
 }

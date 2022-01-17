@@ -13,7 +13,7 @@ public:
   void uninit() override;
   const char* getName();
   void setName(const char* name);
-  float getSize();
+  int getSize();
   void setSize(int size);
   void setPosition(float x, float y);
   void setControllable(bool controllable);
