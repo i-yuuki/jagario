@@ -27,7 +27,7 @@ void Player::draw(){
   r->setTexture(texture.get());
   Near::Math::Vector2 pos(transform.position.x, transform.position.y);
   r->fillRect(pos, Near::Math::Vector2(static_cast<float>(size)), Near::Math::Vector2(0.5f, 0.5f));
-  font->drawText(name, pos, Near::Math::Vector2(0.5f, 0.5f), std::max(10.0f, size / 3.0f), Near::Math::Color(0, 0, 0, 1));
+  font->drawText(name, pos, Near::Math::Vector2(0.5f, 0.5f), std::min(std::max(10.0f, size / 3.0f), 64.0f), Near::Math::Color(0, 0, 0, 1));
 }
 
 void Player::uninit(){
