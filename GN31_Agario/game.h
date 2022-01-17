@@ -8,6 +8,7 @@
 #include "player.h"
 #include "player-camera.h"
 #include "pellet.h"
+#include "title-screen.h"
 
 class Game{
 public:
@@ -15,11 +16,13 @@ public:
   void update();
   void draw();
   void uninit();
+  void connect(const char* address, const char* playerName);
 private:
   std::unique_ptr<Near::Scene> scene;
   Near::FPSCounter fpsCounter;
   std::shared_ptr<Near::VertexShader> vertexShader;
   std::shared_ptr<PlayerCamera> camera;
+  std::shared_ptr<TitleScreen> titleScreen;
   GameConnection connection;
   unsigned int playerId;
   std::unordered_map<unsigned int, std::shared_ptr<Player>> players;

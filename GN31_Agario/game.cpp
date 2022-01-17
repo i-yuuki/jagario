@@ -13,6 +13,9 @@ void Game::init(){
   vertexShader = Near::Assets::vertexShaders()->getOrLoad("assets/nearlib/shaders/vs.hlsl");
   Near::renderer()->setVertexShader(vertexShader.get());
   Near::Assets::fonts()->add("Inter", "assets/fonts/inter.fnt");
+
+  titleScreen = scene->getLayer(Near::Scene::LAYER_OVERLAY)->createGameObject<TitleScreen>(this);
+  titleScreen->show();
 }
 
 void Game::update(){
@@ -21,9 +24,6 @@ void Game::update(){
   scene->beforeUpdate(deltaTime);
   scene->update(deltaTime);
   scene->afterUpdate(deltaTime);
-  if(Near::input()->isKeyPressedThisFrame('C')){
-    connection.connect("127.0.0.1", u8"てすと");
-  }
   while(connection.receivePacket()){
     switch(connection.getPacketType()){
       case PacketType::S_JOIN:
@@ -107,6 +107,7 @@ void Game::draw(){
 void Game::uninit(){
   vertexShader.reset();
   players.clear();
+  titleScreen.reset();
   camera.reset();
   scene->uninit();
   scene.reset();
@@ -121,6 +122,20 @@ std::shared_ptr<Player> Game::getMe(){
 std::shared_ptr<Player> Game::getPlayer(unsigned int playerId){
   auto it = players.find(playerId);
   return it == players.end() ? nullptr : it->second;
+}
+
+void Game::connect(const char* address, const char* playerName){
+  for(auto it = players.begin();it != players.end();it ++){
+    it->second->markRemove();
+  }
+  players.clear();
+
+  for(auto it = pellets.begin();it != pellets.end();it ++){
+    it->second->markRemove();
+  }
+  pellets.clear();
+
+  connection.connect(address, playerName);
 }
 
 void Game::disconnect(){
