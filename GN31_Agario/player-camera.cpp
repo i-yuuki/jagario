@@ -20,5 +20,8 @@ void PlayerCamera::draw(){
 
 void PlayerCamera::setFollow(std::weak_ptr<Player> player){
   this->player = player;
+  if(auto p = player.lock()){
+    transform.position = -p->transform.position;
+  }
 }
 
