@@ -66,6 +66,26 @@ void Game::update(){
         }
         break;
       }
+      case PacketType::S_ADD_PELLET:
+      {
+        auto& packet = connection.getPacket<PacketServerAddPellet>();
+        // TODO プレイヤーの1個下のレイヤーに？
+        auto pellet = scene->getLayer(Near::Scene::LAYER_OBJECTS)->createGameObject<Pellet>();
+        pellet->transform.position.x = packet.posX;
+        pellet->transform.position.y = packet.posY;
+        pellets.insert({packet.pelletId, pellet});
+        break;
+      }
+      case PacketType::S_REMOVE_PELLET:
+      {
+        auto& packet = connection.getPacket<PacketServerRemovePellet>();
+        auto it = pellets.find(packet.pelletId);
+        if(it != pellets.end()){
+          it->second->markRemove();
+          pellets.erase(it);
+        }
+        break;
+      }
     }
   }
   if(auto me = getMe()){

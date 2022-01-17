@@ -7,6 +7,7 @@
 #include "game-connection.h"
 #include "player.h"
 #include "player-camera.h"
+#include "pellet.h"
 
 class Game{
 public:
@@ -22,6 +23,7 @@ private:
   GameConnection connection;
   unsigned int playerId;
   std::unordered_map<unsigned int, std::shared_ptr<Player>> players;
+  std::unordered_map<unsigned int, std::shared_ptr<Pellet>> pellets;
   std::shared_ptr<Player> getMe();
   std::shared_ptr<Player> getPlayer(unsigned int playerId);
   void disconnect();
