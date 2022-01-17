@@ -12,6 +12,7 @@ public:
   void draw() override;
   void uninit() override;
   void setName(const char* name);
+  float getSize();
   void setSize(int size);
   void setPosition(float x, float y);
   void setControllable(bool controllable);

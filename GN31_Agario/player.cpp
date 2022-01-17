@@ -39,6 +39,10 @@ void Player::setName(const char* name){
   strcpy_s(this->name, sizeof(this->name), name);
 }
 
+float Player::getSize(){
+  return size;
+}
+
 void Player::setSize(int size){
   this->size = size;
 }
