@@ -3,7 +3,11 @@
 
 #include "game-scene.h"
 
+Game::Game() : config("config.txt"){
+}
+
 void Game::init(){
+  config.load();
   connection.init();
   scene = std::make_unique<GameScene>();
   scene->init();
@@ -124,7 +128,11 @@ std::shared_ptr<Player> Game::getPlayer(unsigned int playerId){
   return it == players.end() ? nullptr : it->second;
 }
 
-void Game::connect(const char* address, const char* playerName){
+Config& Game::getConfig(){
+  return config;
+}
+
+void Game::connect(){
   for(auto it = players.begin();it != players.end();it ++){
     it->second->markRemove();
   }
@@ -135,7 +143,7 @@ void Game::connect(const char* address, const char* playerName){
   }
   pellets.clear();
 
-  connection.connect(address, playerName);
+  connection.connect(config.address, config.playerName);
 }
 
 void Game::disconnect(){
