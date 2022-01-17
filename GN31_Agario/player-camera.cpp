@@ -2,8 +2,8 @@
 #include "player-camera.h"
 
 void PlayerCamera::update(float deltaTime){
-  Near::Math::Vector3 targetPos;
-  Near::Math::Vector3 targetScale;
+  Near::Math::Vector3 targetPos = transform.position;
+  Near::Math::Vector3 targetScale = transform.scale;
   if(auto p = player.lock()){
     targetPos = -p->transform.position;
     targetScale = Near::Math::Vector3(1 + std::max((100 - p->getSize()) / 50.0f, 0.0f));
