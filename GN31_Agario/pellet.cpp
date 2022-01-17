@@ -4,6 +4,8 @@
 #include <random>
 
 void Pellet::init(Near::Layer* layer){
+  super::init(layer);
+
   std::mt19937 rand(std::random_device{}());
   // power play
   transform.rotation = Near::Math::Quaternion::CreateFromAxisAngle(Near::Math::Vector3::Forward, std::uniform_real_distribution<float>(0, 6.18f)(rand));
