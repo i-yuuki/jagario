@@ -13,12 +13,14 @@ public:
   void uninit() override;
   void setName(const char* name);
   void setSize(int size);
+  void setPosition(float x, float y);
   void setControllable(bool controllable);
   float getDirection();
   bool hasDirectionChanged();
 private:
   char name[MAX_NAME_LENGTH];
   int size;
+  Near::Math::Vector3 targetPos;
   bool controllable;
   float direction;
   bool directionChanged;

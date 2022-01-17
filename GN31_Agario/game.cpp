@@ -60,8 +60,7 @@ void Game::update(){
       {
         auto& packet = connection.getPacket<PacketServerUpdatePlayer>();
         if(auto player = getPlayer(packet.playerId)){
-          player->transform.position.x = packet.posX;
-          player->transform.position.y = packet.posY;
+          player->setPosition(packet.posX, packet.posY);
           player->setSize(packet.size);
         }
         break;

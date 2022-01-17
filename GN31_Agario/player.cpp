@@ -3,12 +3,14 @@
 
 void Player::init(Near::Layer* layer){
   super::init(layer);
+  targetPos = transform.position;
   texture = Near::Assets::textures()->getOrLoad("assets/textures/player.png");
   font = Near::Assets::fonts()->get("Inter");
 }
 
 void Player::update(float deltaTime){
   super::update(deltaTime);
+  transform.position = Near::Math::Vector3::Lerp(transform.position, targetPos, std::min(1.0f, deltaTime / 100.0f));
   if(controllable){
     int mouseX = Near::input()->getMouseX();
     int mouseY = Near::input()->getMouseY();
@@ -39,6 +41,11 @@ void Player::setName(const char* name){
 
 void Player::setSize(int size){
   this->size = size;
+}
+
+void Player::setPosition(float x, float y){
+  targetPos.x = x;
+  targetPos.y = y;
 }
 
 void Player::setControllable(bool controllable){
