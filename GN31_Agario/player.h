@@ -18,14 +18,16 @@ public:
   void setPosition(float x, float y);
   void setControllable(bool controllable);
   float getDirection();
-  bool hasDirectionChanged();
+  bool hasControlChanged();
+  bool getBoost();
 private:
   char name[MAX_NAME_LENGTH];
   int size;
   Near::Math::Vector3 targetPos;
   bool controllable;
   float direction;
-  bool directionChanged;
+  bool boost;
+  bool controlChanged;
   std::shared_ptr<Near::Texture> texture;
   std::shared_ptr<Near::Font::Font> font;
 };

@@ -17,8 +17,10 @@ void Player::update(float deltaTime){
     int dirX = mouseX - Near::renderer()->getWidth() / 2;
     int dirY = mouseY - Near::renderer()->getHeight() / 2;
     float direction = std::atan2(static_cast<float>(dirX), static_cast<float>(dirY));
-    directionChanged = direction != this->direction;
+    bool boost = Near::input()->isKeyDown(' ');
+    controlChanged = direction != this->direction || boost != this->boost;
     this->direction = direction;
+    this->boost = boost;
   }
 }
 
@@ -64,6 +66,10 @@ float Player::getDirection(){
   return direction;
 }
 
-bool Player::hasDirectionChanged(){
-  return directionChanged;
+bool Player::getBoost(){
+  return boost;
+}
+
+bool Player::hasControlChanged(){
+  return controlChanged;
 }

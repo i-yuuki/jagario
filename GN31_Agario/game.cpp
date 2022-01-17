@@ -99,10 +99,11 @@ void Game::update(){
     }
   }
   if(auto me = getMe()){
-    if(me->hasDirectionChanged()){
-      PacketClientDirection packet;
+    if(me->hasControlChanged()){
+      PacketClientUpdate packet;
       packet.playerId = playerId;
       packet.direction = me->getDirection();
+      packet.boost = me->getBoost();
       connection.sendPacket(packet);
     }
   }
