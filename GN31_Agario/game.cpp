@@ -58,6 +58,10 @@ void Game::update(){
           it->second->markRemove();
           players.erase(it);
         }
+        if(packet.playerId == playerId){
+          // 自分が死んだ = ゲーム終了、タイトルに戻る
+          titleScreen->show();
+        }
         break;
       }
       case PacketType::S_UPDATE_PLAYER:
