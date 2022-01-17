@@ -18,5 +18,5 @@ void Pellet::draw(){
   auto* r = Near::renderer2D();
   r->setTexture(texture.get());
   Near::Math::Vector2 pos(transform.position.x, transform.position.y);
-  r->fillRect(pos, Near::Math::Vector2(20), Near::Math::Vector2(0.5f), color);
+  r->fillRect(pos, Near::Math::Vector2(10), Near::Math::Vector2(0.5f), color);
 }
