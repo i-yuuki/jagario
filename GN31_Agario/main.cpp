@@ -16,7 +16,7 @@ int APIENTRY WinMain(HINSTANCE instance, HINSTANCE, LPSTR, int cmdShow){
 
   try{
     Near::InitParams initParams;
-    initParams.windowTitle = u8"Agario Clone";
+    initParams.windowTitle = u8"Jagario";
     Near::init(initParams);
     game = std::make_unique<Game>();
     game->init();
