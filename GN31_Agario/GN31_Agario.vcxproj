@@ -160,6 +160,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="background.cpp" />
     <ClCompile Include="game-connection.cpp" />
     <ClCompile Include="game-scene.cpp" />
     <ClCompile Include="game.cpp" />
@@ -175,6 +176,7 @@
     <ClCompile Include="player.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="background.h" />
     <ClInclude Include="game-connection.h" />
     <ClInclude Include="game-scene.h" />
     <ClInclude Include="game.h" />

@@ -1,11 +1,11 @@
 #include "pch.h"
 #include "game-scene.h"
 
-#include "player.h"
+#include "background.h"
 
 void GameScene::init(){
   Scene::init();
-  // Add objects here
+  getLayer(LAYER_OBJECTS)->createGameObject<Background>(5000, 128);
 }
 
 void GameScene::draw(){
